@@ -26,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view("Post.create");
     }
 
     /**
@@ -37,7 +37,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $data = $request->all();
+        $data = $request->except('_token');
+        Post::insert($data);
+        return redirect()->route("post.index");
     }
 
     /**

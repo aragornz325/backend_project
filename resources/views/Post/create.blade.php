@@ -1,19 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-        <title>@yield('title')</title>
-    </head>
-    <body>
-        {{-- @include('components.header') --}}
-        <div class="container">
-            {{-- @include('components.alert') --}}
-            @yield('content')
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    </body>
-</html>
+@extends('base')
+@section('title') Lista de noticias @endsection
+@section('content')
+<form action="{{ route('post.store') }}" method="post">
+    {{ csrf_field() }}
+    <div class="mb-3">
+        <label for="title" class="form-label">Titulo</label>
+        <input type="text" class="form-control" id="title" name="title">
+        <div id="emailHelp" class="form-text">Introduzca un titulo que identifique la noticia.</div>
+      </div>
+      <div class="mb-3">
+        <label for="image" class="form-label">Imagen</label>
+        <input type="text" class="form-control" id="image" name="image">
+        <div id="emailHelp" class="form-text">la imagen a cargar no debe ser mayor a 800x600px... (poneeeeleee).</div>
+      </div>
+      <div class="mb-3">
+        <label for="summary" class="form-label">Resumen</label>
+        <textarea name="summary" id="summary" class="form-control" cols="30" rows="10"></textarea>
+        <div id="emailHelp" class="form-text">Haz un resumen de tu noticia.</div>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">descripcion</label>
+        <textarea name="description" id="description" class="form-control" cols="30" rows="10"></textarea>
+        <div id="emailHelp" class="form-text">desarrolla tu notica, recuerda que el lector prefiere el contenido desarrollado de manera calida, no como una exposicion policial. no omitas mencionar las funtes si tomas informacion de otra web, recuerda agradecer.</div>
+      </div>
+      <div class="mb-3">
+        <label for="author" class="form-label">Autor</label>
+        <input type="text" class="form-control" id="author" name="author">
+        <div id="emailHelp" class="form-text">No olvides mencionarte como autor.</div>
+      </div>
+     <button type="submit" class="btn btn-primary">Guardar</button>
+
+</form>
+
+@endsection
