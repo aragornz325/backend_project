@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
 {
@@ -23,14 +26,26 @@ class PostController extends Controller
 
     public function search(Request $request)
     {
-        // $data = $request->all();
-        $data = $request->input('search');
-        $query = Post::select()
-        ->where('title','like',"%$data%")
-        ->orWhere('author','like',"%$data%")
-        ->get();
+         // $data = $request->all();
+       $data = $request->input('search');
+       $query = Post::select()
+       ->join('categories as cat','posts.category_id', '=', 'cat.id')
+       ->Where ('title','like',"%$data%")
+       ->orWhere ('author','like',"%$data%")
+       ->orWhere ('cat.name','like',"%$data%")
+       ->get();
+       return view('Post.index')->with(['posts' => $query]);
 
-    return view("post.index")->with(["posts" => $query]);
+        // $data = $request->all();
+    //     $data = $request->input('search');
+    //     $query = Post::select()
+    //     ->join('categories as cat', 'posts.categoy_id', '=', 'cat.id')
+    //     ->where('title','like',"%$data%")
+    //     ->orWhere('author','like',"%$data%")
+    //     ->orWhere('cat.name','like',"%$data%")
+    //     ->get();
+
+    // return view("post.index")->with(["posts" => $query]);
 
 
         // $data['posts'] = Post::paginate(5);
@@ -45,7 +60,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("Post.create");
+        $categories = Category::all();
+        return view("post.create")->with(["categories" => $categories]);
     }
 
     /**
