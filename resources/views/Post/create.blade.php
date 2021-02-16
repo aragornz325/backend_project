@@ -1,5 +1,5 @@
 @extends('base')
-@section('title') Lista de noticias @endsection
+@section('title') Crear Nueva Noticia @endsection
 @section('content')
 <form action="{{ route('post.store') }}" method="post">
     {{ csrf_field() }}

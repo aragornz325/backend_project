@@ -60,9 +60,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        $data = Post::findOrFail($id);
+        return view("post.edit")->with(["post" => $data]);
     }
 
     /**
@@ -72,9 +73,12 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        //
+        // $data = $request->all();
+        $data = $request->except('_token', '_method');
+        Post::where('id','=', $id)->update($data);
+        return redirect()->route("post.index");
     }
 
     /**
