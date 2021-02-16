@@ -18,7 +18,7 @@
                     <td>{{ $post->title }}</td>
                     <td>{{ $post->author }}</td>
                     <td>
-                        <a href="{{ route("post.edit",$post->id ) }}" class="btn btn-sm btn-danger"> Actualizar </a>
+                        <a href="{{ route("post.edit",$post->id ) }}" class="btn btn-sm btn-info"> Actualizar </a>
 
                         <form action="{{ route("post.destroy", $post->id) }}" method="post">
                             {{ csrf_field() }}
@@ -36,3 +36,4 @@
 
         </tbody>
     </table>
+@endsection
