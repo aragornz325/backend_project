@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Route::resource('post', 'PostController');
 
+Route::resource('categories', 'CategoryController');
+
 Route::group(['prefix' => 'post'], function () {
     Route::post('search', 'PostController@search')->name('post.search');
 

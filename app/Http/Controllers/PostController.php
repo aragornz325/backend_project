@@ -36,21 +36,7 @@ class PostController extends Controller
        ->get();
        return view('Post.index')->with(['posts' => $query]);
 
-        // $data = $request->all();
-    //     $data = $request->input('search');
-    //     $query = Post::select()
-    //     ->join('categories as cat', 'posts.categoy_id', '=', 'cat.id')
-    //     ->where('title','like',"%$data%")
-    //     ->orWhere('author','like',"%$data%")
-    //     ->orWhere('cat.name','like',"%$data%")
-    //     ->get();
 
-    // return view("post.index")->with(["posts" => $query]);
-
-
-        // $data['posts'] = Post::paginate(5);
-        // return view('Post.index' , $data);
-        //
     }
 
     /**
@@ -87,9 +73,11 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+        $data = Post::findOrFail($id);
+        $categories = Category::all();
+        return view("Post.show")->with(["post" => $data, "categories" => $categories]);
     }
 
     /**
