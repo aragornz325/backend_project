@@ -1,5 +1,5 @@
 @extends('base')
-@section('title') Categorias Show @endsection <!-- aqui se pone el titulo de la pagina -->
+@section('title') Vista de Categorias <br> con descripcion @endsection <!-- aqui se pone el titulo de la pagina -->
 @section('content')
 {{ method_field('PATCH')}}
 

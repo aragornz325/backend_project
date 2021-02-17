@@ -1,5 +1,5 @@
 @extends('base')
-@section('title') Ver Categorias @endsection
+@section('title') Lista de Categorias de Noticias @endsection
 @section('content')
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
